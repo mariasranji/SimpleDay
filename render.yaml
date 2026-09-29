@@ -1,9 +1,0 @@
-services:
-  - type: web
-    name: simpleday-todo
-    runtime: python
-    buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn app:app
-    envVars:
-      - key: ALLOWED_ORIGIN
-        value: "*"
