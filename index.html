@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A simple, practical to-do list for everyday tasks.">
+  <title>SimpleDay — To-do list</title>
+  <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="wordmark" href="#"><span class="mark">s.</span><span>simpleday</span></a>
+      <div class="side-label">WORKSPACE</div>
+      <nav class="side-nav" aria-label="Task filters">
+        <button class="nav-item selected" data-filter="all"><span class="nav-icon">▦</span> All tasks <span class="nav-count" id="allCount">0</span></button>
+        <button class="nav-item" data-filter="active"><span class="nav-icon">○</span> To do <span class="nav-count" id="activeCount">0</span></button>
+        <button class="nav-item" data-filter="completed"><span class="nav-icon">✓</span> Completed <span class="nav-count" id="completedCount">0</span></button>
+      </nav>
+      <div class="side-bottom">
+        <div class="side-note"><span class="note-dot"></span><div><b>A little reminder</b><p>One thing at a time is enough.</p></div></div>
+        <div class="side-foot">A simple place to get things done.</div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div><span class="breadcrumb">MY WORKSPACE</span><span class="crumb-slash">/</span><span class="breadcrumb current">TASKS</span></div>
+        <div class="date-label" id="todayLabel"></div>
+      </header>
+
+      <section class="page-intro">
+        <div>
+          <p class="overline">YOUR DAY, AT YOUR PACE</p>
+          <h1>My tasks<span class="heading-period">.</span></h1>
+          <p class="intro-copy">A clear list. A little less on your mind.</p>
+        </div>
+        <div class="summary-card">
+          <div class="summary-top"><span>COMPLETION</span><span id="completionPercent">0%</span></div>
+          <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+          <div class="summary-bottom"><span id="summaryDone">0 completed</span><span id="summaryLeft">0 left</span></div>
+        </div>
+      </section>
+
+      <section class="task-panel">
+        <div class="panel-heading">
+          <div><h2 id="listHeading">All tasks</h2><p id="listSubheading">Everything you need to keep track of.</p></div>
+          <button class="text-button" id="suggestBtn" type="button">↗ Get a task idea</button>
+        </div>
+
+        <form id="taskForm" class="task-form">
+          <input type="hidden" id="taskId">
+          <div class="form-main">
+            <label class="sr-only" for="titleInput">Task name</label>
+            <input id="titleInput" class="title-input" maxlength="120" placeholder="What needs to get done?" required>
+            <button class="add-button" type="submit" id="submitButton">＋ Add task</button>
+          </div>
+          <div class="form-options">
+            <label class="field-with-icon"><span>▤</span><select id="categoryInput" aria-label="Category"><option>Personal</option><option>College</option><option>Work</option><option>Health</option><option>Other</option></select></label>
+            <label class="field-with-icon due-field"><span>▦</span><input id="dueInput" type="date" aria-label="Due date"></label>
+            <label class="notes-field"><input id="notesInput" maxlength="500" placeholder="Add a note (optional)" aria-label="Task note"></label>
+            <button class="cancel-button" id="cancelEdit" type="button" hidden>Cancel</button>
+          </div>
+          <p id="formMessage" class="form-message" role="status"></p>
+        </form>
+
+        <div class="list-tools">
+          <div class="list-tools-left"><span class="list-indicator"></span><span id="visibleCount">0 tasks</span></div>
+          <label class="search-box"><span>⌕</span><input id="searchInput" type="search" placeholder="Search tasks..." aria-label="Search tasks"></label>
+        </div>
+
+        <div id="taskList" class="task-list"></div>
+        <div id="emptyState" class="empty-state">
+          <div class="empty-mark">＋</div>
+          <h3 id="emptyTitle">Your list is clear.</h3>
+          <p id="emptyCopy">Add a task above when you're ready.</p>
+        </div>
+      </section>
+
+      <footer class="page-footer">
+        <span>SimpleDay <span class="footer-sep">·</span> Keep it manageable.</span>
+        <details class="tech-details">
+          <summary>About this app</summary>
+          <div class="tech-popover">
+            <p><b>Built with HTML, CSS and JavaScript.</b> Tasks are stored in your browser using localStorage, so this version can run directly on Netlify.</p>
+            <p>The task idea button fetches a sample task from a public API. A small WebAssembly module calculates the completion percentage.</p>
+            <button id="webnnBtn" type="button" class="subtle-button">Check WebNN support</button>
+            <p id="webnnResult" class="webnn-result">WebNN support has not been checked.</p>
+          </div>
+        </details>
+      </footer>
+    </main>
+  </div>
+  <script src="static/js/app.js"></script>
+</body>
+</html>
